@@ -1,1 +1,0 @@
-:pushpin: task management based on python classes and django models

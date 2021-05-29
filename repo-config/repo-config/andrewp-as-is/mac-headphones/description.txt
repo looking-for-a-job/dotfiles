@@ -1,1 +1,0 @@
-:apple: :headphones: detect if headphones are plugged

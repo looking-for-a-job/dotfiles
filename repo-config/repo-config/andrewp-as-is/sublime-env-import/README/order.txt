@@ -1,4 +1,0 @@
-installation
-config
-usage
-links

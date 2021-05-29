@@ -1,1 +1,0 @@
-adds '.local:port' to the site domain links for local development if settings.DEBUG is True

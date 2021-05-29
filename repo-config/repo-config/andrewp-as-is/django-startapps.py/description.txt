@@ -1,1 +1,0 @@
-create multiple apps with one command

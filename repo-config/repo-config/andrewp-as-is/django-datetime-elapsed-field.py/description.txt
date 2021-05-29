@@ -1,1 +1,0 @@
-datetime field with 'elapsed' attr

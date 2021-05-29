@@ -1,1 +1,0 @@
-:apple: sync macOS Finder tag paths

@@ -1,1 +1,0 @@
-:chart_with_upwards_trend: Django Google Analytics template tag

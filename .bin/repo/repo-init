@@ -57,10 +57,26 @@ unlicense-text > UNLICENSE || exit
 };:
 [ -e package.json ] && {
     cat <<EOF > .npmignore
+# ~/.npmignore NOT SUPPORTED :(
+
 .*
+/build
+/.config
+/dist
+/examples
+/Icon
+/Icon?
+/MANIFEST
+/MANIFEST.in
+/setup.cfg
+/tests
+.DS_Store
+*.egg-info
+*.md
 *.py
+*.pyc
 *.txt
-MANIFEST.in
+*.yml
 UNLICENSE
 EOF
 };:

@@ -1,1 +1,0 @@
-:snake: :microscope: detect OS and Python versions

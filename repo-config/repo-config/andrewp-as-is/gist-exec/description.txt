@@ -1,1 +1,0 @@
-:octocat: :zap: execute gist script

@@ -1,1 +1,0 @@
-django storages S3 media

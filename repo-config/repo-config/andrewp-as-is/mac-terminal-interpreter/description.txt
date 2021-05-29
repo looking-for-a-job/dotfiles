@@ -1,1 +1,0 @@
-:apple: macOS Terminal.app interpreter

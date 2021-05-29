@@ -1,1 +1,0 @@
-:apple: :rocket: manage macOS login items

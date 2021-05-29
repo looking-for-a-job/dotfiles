@@ -1,1 +1,0 @@
-Django abstract model and views for up/down voting

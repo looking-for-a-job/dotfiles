@@ -1,3 +1,0 @@
-aws
-backup
-s3

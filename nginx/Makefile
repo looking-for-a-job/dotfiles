@@ -25,7 +25,6 @@ ln:
 	find /usr/local/etc/nginx/sites-available -type f -exec ln -fs '{}' /usr/local/etc/nginx/sites-enabled/ \;
 
 brew:
-	brew list | grep -q nginx || brew install nginx;:
 	brew services restart nginx
 	brew services list | grep nginx
 	ps -ax | grep nginx

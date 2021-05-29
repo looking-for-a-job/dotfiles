@@ -1,1 +1,0 @@
-POST dict with http request variables

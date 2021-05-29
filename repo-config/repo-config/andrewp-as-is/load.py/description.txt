@@ -1,1 +1,0 @@
-:snake: load python module from a file

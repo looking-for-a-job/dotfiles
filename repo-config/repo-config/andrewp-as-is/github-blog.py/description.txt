@@ -1,1 +1,0 @@
-:octocat: :pencil2: github blog based on Django

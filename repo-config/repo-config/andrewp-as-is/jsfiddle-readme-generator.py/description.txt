@@ -1,1 +1,0 @@
-:violin: :book: generate jsfiddle README.md

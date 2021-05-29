@@ -1,1 +1,0 @@
-:book: generate README from python docstrings

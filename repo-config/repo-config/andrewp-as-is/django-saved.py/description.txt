@@ -1,1 +1,0 @@
-Django abstract model and views for saved items (bookmarks/likes/stars/watching/etc)

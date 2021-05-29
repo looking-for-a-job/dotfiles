@@ -1,1 +1,0 @@
-+   minimal wagtail project template

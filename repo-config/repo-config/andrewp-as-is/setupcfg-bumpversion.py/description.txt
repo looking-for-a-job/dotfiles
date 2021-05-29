@@ -1,1 +1,0 @@
-bump setup.cfg version

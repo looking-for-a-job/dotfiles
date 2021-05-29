@@ -1,1 +1,0 @@
-:snake: :package: find python packages names

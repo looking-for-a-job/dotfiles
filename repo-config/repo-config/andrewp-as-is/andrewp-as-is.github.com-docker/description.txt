@@ -1,1 +1,0 @@
-:octocat: :whale2: my github blog docker image

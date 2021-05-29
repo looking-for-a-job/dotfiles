@@ -1,1 +1,0 @@
-init S3 media bucket and user policy

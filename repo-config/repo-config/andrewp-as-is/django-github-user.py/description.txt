@@ -1,1 +1,0 @@
-:octocat: django github user models (Gist, Repo, StarredGist, StarredRepo) and management commands

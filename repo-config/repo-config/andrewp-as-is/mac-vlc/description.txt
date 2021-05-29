@@ -1,1 +1,0 @@
-:apple: :movie_camera: macOS VLC.app scripts

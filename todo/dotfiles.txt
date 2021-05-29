@@ -1,9 +1,0 @@
-запихнуть в .txt скрипт для установки?
-
-
-https://github.com/paulirish/dotfiles/blob/master/.macos
-
-https://github.com/stefanpenner/dotfiles/blob/master/.LS_COLORS
-
-
-.pylintrc

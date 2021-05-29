@@ -1,1 +1,0 @@
-:snake: register pypi.org project

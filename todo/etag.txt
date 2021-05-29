@@ -1,6 +1,0 @@
-if not requests_etag.ischanged(url,timeout=1):
-    return
-
-r = requests.head(self.url,timeout=5)
-if 'etag' in r.headers and self.__class__.etag == r.headers.get('etag'):
-    return

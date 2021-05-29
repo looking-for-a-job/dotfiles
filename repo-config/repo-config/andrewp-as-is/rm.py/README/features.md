@@ -1,2 +1,0 @@
-- removes **dirs** and **files**
-- **no exception** - skip if path not exists

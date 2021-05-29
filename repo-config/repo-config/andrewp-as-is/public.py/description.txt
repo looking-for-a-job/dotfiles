@@ -1,1 +1,0 @@
-:snake: replace '__all__' with '@public.add' decorator

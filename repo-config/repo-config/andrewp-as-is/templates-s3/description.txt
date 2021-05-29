@@ -1,1 +1,0 @@
-:cloud: store templates on S3

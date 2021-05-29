@@ -1,1 +1,0 @@
-:snake: remove control characters from a string

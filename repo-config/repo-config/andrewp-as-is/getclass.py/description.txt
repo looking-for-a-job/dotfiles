@@ -1,1 +1,0 @@
-:snake: getclass(object) function - get object class

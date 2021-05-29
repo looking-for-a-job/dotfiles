@@ -1,1 +1,0 @@
-:snake: lowercase dict

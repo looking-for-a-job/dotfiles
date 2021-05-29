@@ -1,1 +1,0 @@
-register function to be executed at termination

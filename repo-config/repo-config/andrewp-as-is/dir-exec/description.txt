@@ -1,1 +1,0 @@
-execute command from every dir

@@ -1,1 +1,0 @@
-macos say для desktop нужен api какой-то локальный

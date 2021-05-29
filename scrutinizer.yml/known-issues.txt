@@ -1,1 +1,0 @@
-# known-issues: code rating requires at least one class/function

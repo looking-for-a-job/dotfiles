@@ -1,1 +1,0 @@
-+   minimal django project template
