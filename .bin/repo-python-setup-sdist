@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+name="$(IFS=.;set ${PWD##*/}; echo $1)"
+description="$(cat .github/description.txt)" || exit
+# todo: keywords
+# keywords="$(cat .config/keywords.txt)" || exit
+version="$(python3 setup.py --version)" || exit
+description="$(echo "$description" | sed -e 's/:[^()]*://g' | xargs)" # noemoji
+fullname="$(awk -F/ '{print $(NF-1)"/"$(NF)}' <<< "$PWD")" || exit
+url="https://github.com/$fullname"
+classifiers_file="classifiers.txt"
+long_description_file="README.md"
+license="Unlicense"
+
+{ set -x; export SETUP_NAME="$name"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUP_VERSION="$version"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUP_URL="$url"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUP_CLASSIFIERS_FILE="$classifiers_file"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUP_DESCRIPTION="$description"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUP_LONG_DESCRIPTION_FILE="$long_description_file"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUP_KEYWORDS="$keywords"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUP_LICENSE="$license"; { set +x; } 2>/dev/null; }
+
+dist_dir="$(set -x;mktemp -d)" || exit
+
+( set -x; rm -fr /tmp/python )
+( set -x; python3 -m setup_dist sdist --dist-dir="$dist_dir"  1> /dev/null ) || exit
+find "$dist_dir" -type f

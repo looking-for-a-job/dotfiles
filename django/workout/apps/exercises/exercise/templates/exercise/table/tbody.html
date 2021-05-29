@@ -1,0 +1,25 @@
+{% load static %}
+{% load sets %}
+{% load exercise_breadcrumbs %}
+{% load summary %}
+
+<tbody>
+<tr>
+    <td class="name">
+        {% autoescape off %}{% exercise_breadcrumbs exercise %}{% endautoescape %}
+    </td>
+{% for day in days %}
+    <td class="day{% if day == date %} selected{% endif %}">
+        {% sets exercise day %}
+    </td>
+{% endfor %}
+</tr>
+<tr>
+    <td></td>
+{% for day in days %}
+    <td class="day{% if day == date %} selected{% endif %}">
+        {% summary exercise day %}
+    </td>
+{% endfor %}
+</tr>
+</tbody>

@@ -1,0 +1,5 @@
++   [`launchd-env` - launchd.plist environment variables](https://pypi.org/project/launchd-env/)
++   [`launchd-exec` - execute script via launchd](https://pypi.org/project/launchd-exec/)
++   [`launchd-generator` - launchd.plist generator](https://pypi.org/project/launchd-generator/)
++   [`launchd-logs` - launchd.plist logs](https://pypi.org/project/launchd-logs/)
++   [`launchd-tag` - LaunchAgents Finder tags](https://pypi.org/project/launchd-tag/)

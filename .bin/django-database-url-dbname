@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+# dbtype://user:@ip:port/dbname
+[[ -z "$DJANGO_DATABASE_URL" ]] && echo "ERROR: DJANGO_DATABASE_URL NOT DEFINED" && exit 1
+echo "$DJANGO_DATABASE_URL" | awk -F'/' '{print $NF}'

@@ -1,0 +1,1 @@
+:open_file_folder: get case exact path as stored in the filesystem

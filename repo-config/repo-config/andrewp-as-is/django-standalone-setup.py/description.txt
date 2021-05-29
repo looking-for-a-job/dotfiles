@@ -1,0 +1,1 @@
+call django.setup() for standalone usage

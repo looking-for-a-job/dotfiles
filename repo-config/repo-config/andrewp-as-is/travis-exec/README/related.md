@@ -1,0 +1,5 @@
++   [`travis-cron` - travis cron management](https://pypi.org/project/travis-cron/)
++   [`travis-env` - travis environment variables management](https://pypi.org/project/travis-env/)
++   [`travis-exec` - execute command for every travis repo](https://pypi.org/project/travis-exec/)
++   [`travis-generator` - `.travis.yml` generator](https://pypi.org/project/travis-generator/)
++   [`travis-image-status` - quickly get travis status from an image](https://pypi.org/project/travis-image-status/)

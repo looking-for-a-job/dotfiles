@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+# path/to/project/
+# path/to/project/setup.cfg
+# path/to/project/setup.py
+
+tmp=/tmp/setup.cfg
+dst=setup.cfg
+
+! [ -e setup.py ] && echo "SKIP ($PWD): setup.py NOT EXISTS" && exit
+[ -e setup.cfg ] && echo "SKIP ($PWD): setup.cfg EXISTS" && exit
+
+# https://setuptools.readthedocs.io/en/latest/setuptools.html
+# file (symlink out of repo) vs str:
+# + less changes and commits
+# + easier to make diff (version increment)
+
+name="$(IFS='.';set ${PWD##*/};echo $1)" || exit
+fullname="$(awk -F/ '{print $(NF-1)"/"$(NF)}' <<< "$PWD")" || exit
+url="https://github.com/$fullname"
+
+export url="$url"
+# distutils.errors.DistutilsOptionError: Version loaded from file: version.txt does not comply with PEP 440:
+export long_description="file: README.md"
+export description="file: description.txt"
+export classifiers="file: classifiers.txt"
+
+[ -e "setup.cfg" ] && { cp "$dst" "$tmp" || exit; }
+( set -x; python -B -m setupcfg_generator ) || exit
+
+[ -e "$tmp" ] && ( set -x; cmp "$tmp" "$dst" > /dev/null ) && {
+    ( set -x; /usr/bin/touch -r . "$dst" ); exit
+}
+( set -x; cat "$dst" )

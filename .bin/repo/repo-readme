@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+[ -e .readme/README.md ] && { ( set -x; cp .readme/README.md README.md ); exit; }
+[ -e .readme/README.md.sh ] && { ( set -x; bash .readme/README.md.sh ) > README.md; exit; }
+[ -e README.md.sh ] && { ( set -x; bash README.md.sh ) > README.md; exit; }
+[ -e .readme/README.sh ] && { ( set -x; bash .readme/README.md ) || exit; }
+[ -e README.sh ] && { ( set -x; bash README.md ) || exit; }
+( set -x; readme-github ) > README.md || exit
+
+backup_dirname=~/git/README-sections-backup/"${PWD##*/}"
+! [ -e "$backup_dirname" ] && { ( set -x; mkdir "$backup_dirname" ) || exit; }
+( set -x; rsync -a --delete .readme/. "$backup_dirname" )

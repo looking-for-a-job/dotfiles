@@ -1,0 +1,1 @@
+:computer: HardwareMonitor.app hwmonitor

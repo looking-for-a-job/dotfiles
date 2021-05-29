@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+( set -x; repo:web:github.com:run ) || exit
+[[ -z $REPO_ADMIN ]] && echo "SKIP ($PWD): repo-admin ONLY" && exit
+
+! [ -e .travis.yml ] && exit
+
+fullname="$(bash -l ~/.repo-scripts/web/github.com/fullname.sh)" || exit
+status="$(set -x; travis-image-status "$fullname")" || exit
+echo "travis: $status"
+[[ "$status" == *"start"* ]] && exit
+[[ "$status" == *"pass"* ]] && {
+    ( set -x; repo:web:npmjs.com:run ) || exit
+    ( set -x; repo:web:pypi.org:run ) || exit
+}
+[[ "$failed" == *"failed"* ]] && { ( set -x; travis open -r "$fullname" ); exit 1; };:
+exit 1

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+readme-section-badges-released || exit
+readme-section-badges-license || exit
+
+readme-section-install || exit
+readme-section-settings || exit
+readme-section-migrate || exit
+
+readme-section ".readme/pros.md"
+readme-section ".readme/cons.md"
+readme-section ".readme/how.md" "How it works"
+readme-section ".readme/features.md"
+readme-section ".readme/usage.md"
+readme-section ".readme/examples.md"
+readme-section ".readme/related.md"
+readme-section ".readme/links.md"

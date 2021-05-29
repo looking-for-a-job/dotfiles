@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+echo todo
+exit
+
+[[ "${PWD%/*}" == ~/git/gists ]] && echo "SKIP ($PWD)" && exit
+
+IFS=
+! [ -e .git ] && echo "SKIP ($PWD): .git NOT EXISTS" && exit
+path=.cache/github.com/created
+[ -e "$path" ] || {  echo "SKIP ($PWD): $path NOT EXISTS" && exit; }
+
+cache="$(repo-cache)"  || exit
+dst="$cache"/github.com/topics.txt
+topics="$(cat "$dst" 2> /dev/null)"
+
+fullname="$(bash -l ~/.repo-scripts/web/github.com/fullname.sh)" || exit
+[[ -z "$fullname" ]] && echo "SKIP ($PWD): .git remote NOT EXISTS" && exit
+
+cache_key="github.com/$fullname/topics"
+url="https://github.com/$fullname"
+
+cached="$(shell-cache "$cache_key")" || exit
+IFS=$'\n';set ${topics:-""}
+new="$(echo "$@")"
+
+[[ "$cached" == "$new" ]] && echo "SKIP ($PWD): uptodate" && exit
+
+[[ -n "$topics" ]] && {
+    ( set -x; python3 -m github_topics.set "$fullname" "$@" ) || exit
+} || { ( set -x; python3 -m github_topics.clear "$fullname" ) || exit; }
+
+( set -x; shell-cache "$cache_key" "$new" ) || exit
+

@@ -1,0 +1,1 @@
+:apple: :open_file_folder: :hash: macOS Finder tags. github.com/jdberry/tag python implementation

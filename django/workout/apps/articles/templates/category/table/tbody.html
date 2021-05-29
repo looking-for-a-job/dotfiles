@@ -1,0 +1,31 @@
+{% load static %}
+{% load category_breadcrumbs %}
+{% load exercise_breadcrumbs %}
+{% load summary %}
+
+<tbody>
+{% for exercise in exercises %}
+<tr>
+    <td class="name">
+        {% autoescape off %}{% exercise_breadcrumbs exercise %}{% endautoescape %}
+    </td>
+    <td class="favorite {% if not exercise.favorite %}hidden{% endif %}">
+        <a href="{% url 'exercise:favorite' id=exercise.pk %}" class="btn-warning" {% if not exercise.favorite %}style="visibility: hidden"{% endif %}><i class="far fa-star"></i></i></a>
+    </td>
+    {% for day in days %}
+    <td class="day{% if day == date %} selected{% endif %}">
+       {% summary exercise day %}
+    </td>
+    {% endfor %}
+</tr>
+{% endfor %}
+{% for category in orphaned_categories %}
+<tr>
+    <td class="name">
+        {% autoescape off %}{% category_breadcrumbs category %}{% endautoescape %}
+    </td>
+    <td></td>
+    <td colspan="{{ days|length }}"></td>
+</tr>
+{% endfor %}
+</tbody>

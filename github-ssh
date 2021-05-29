@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+username="$1"
+host=$username.github.com
+comment="github.com/$username"
+passphrase=
+# id_<key_algorithm>_<servername>_<purpose>.<format_information>
+keyfile=~/.ssh/github/id_rsa_github_$username
+pub="$keyfile".pub
+config=~/.ssh/config.d/github/$host
+timeout=3
+out=/tmp/$$.txt
+url="https://github.com/settings/keys"
+
+! [ -e "${config%/*}" ] && { ( set -x; mkdir -p "${config%/*}" ) || exit; }
+! [ -e "$config" ] && cat <<EOF > "$config"
+# ssh -T -o ConnectTimeout=3 -o StrictHostKeyChecking=no $host
+
+Host $host
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github/id_rsa_github_$username
+EOF
+[ -e "$keyfile" ] || {
+    ( set -x; ssh-keygen -t rsa -b 4096 -C "$comment" -P "$passphrase" -f "$keyfile" ) || exit
+}
+user="$(ssh -G $host | grep ^"user " | awk '{print $2}')"
+[[ $user != git ]] && {
+    cat <<EOF
+ERROR: unknown ssh host - '$host'
+
+edit ~/.ssh/config:
+
+Host *
+    Include config.d/*
+    Include config.d/*/*
+EOF
+    exit 1
+}
+
+( set -x; ssh -T -i "$keyfile" -o ConnectTimeout=$timeout -o StrictHostKeyChecking=no git@$username.github.com &> "$out" & )
+pid=$!; sleep $timeout; kill -0 "$pid" &> /dev/null && kill -9 "$pid" &> /dev/null
+
+grep -q "successfully authenticated" "$out" && cat "$out" && exit # OK, exit 0
+
+pbcopy < "$pub" || exit
+[[ $OSTYPE == *"darwin"* ]] && { open "$url"; exit; } || { python3 -m webbrowser "$url" || exit; }
+# ( set -x; ssh-add "$keyfile" ) || exit
+
+# ssh-add ~/.ssh/github/pinax-examples
+
+# https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account
+
+# openssl rsa -in "$keyfile" -outform pem > "$keyfile".pem

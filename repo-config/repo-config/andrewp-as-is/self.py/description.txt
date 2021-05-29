@@ -1,0 +1,1 @@
+@self decorator makes method return self (jQuery-like chaining)

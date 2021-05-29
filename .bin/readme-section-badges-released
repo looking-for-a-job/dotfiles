@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+! [ -e setup.py ] && exit
+
+README_INSTALL_NAME="$(echo "$PWD" | xargs basename | cut -d. -f1)"
+README_RELEASED="$(python3 setup.py --version)" || exit
+export README_INSTALL_NAME="$README_INSTALL_NAME"
+export README_RELEASED="$README_RELEASED"
+
+cat <<"EOF" | envsubst;:
+[![](https://img.shields.io/badge/released-${README_RELEASED}-green.svg?longCache=True)](https://pypi.org/project/${README_INSTALL_NAME}/)
+EOF

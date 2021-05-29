@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+# https://pypi.python.org/pypi?%3Aaction=list_classifiers
+
+# setup.cfg
+# [metadata]
+# classifiers = file: classifiers.txt
+
+! [ -e setup.py ] && echo "SKIP ($PWD): setup.py NOT EXISTS" && exit
+! [ -e .pypi ] && { ( set -x; mkdir .pypi ) || exit; }
+dst="classifiers.txt"
+(
+    [ -e classifiers.txt ] && cat classifiers.txt
+    echo "License :: Public Domain"
+    [[ "$PWD" == *django* ]] && echo "Framework :: Django"
+    [[ "$PWD" == *readme* ]] && echo "Topic :: Documentation"
+    [ -e scripts ] && echo "Topic :: Utilities"
+    [ -e scripts ] && echo "Programming Language :: Unix Shell"
+    [[ "${PWD##*/}" == setup-* ]] && echo "Topic :: System :: Software Distribution "
+
+    [[ -n "$(find . -name "__init__.py")" ]] && echo "Programming Language :: Python :: 3"
+
+    [[ -n "$(find . -name "*.applescript")" ]] && echo "Operating System :: MacOS" && exit
+    [[ "$PWD" == *mac-* ]] && echo "Operating System :: MacOS" && exit
+
+    ! [ -e scripts ] && echo "Operating System :: OS Independent"
+    [ -e scripts ] && echo "Operating System :: Unix"
+) | sort | uniq -u > "$dst"
+( set -x; cat "$dst" )

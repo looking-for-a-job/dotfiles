@@ -1,0 +1,1 @@
+:apple: :uk: :de: :es: :fr: :it: :ru: :jp: :cn: macOS '.localized' localized folder name

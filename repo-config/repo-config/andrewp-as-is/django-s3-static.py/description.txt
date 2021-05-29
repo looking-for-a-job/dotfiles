@@ -1,0 +1,1 @@
+store Django Static Files on Amazon S3

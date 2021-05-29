@@ -1,0 +1,6 @@
++   [`classifiers-generator` - classifiers generator](https://pypi.org/project/readme-docstring/)
++   [`readme-badges` - `README.md` badges](https://pypi.org/project/readme-badges/)
++   [`readme-docstring` - generate README.md from python docstrings](https://pypi.org/project/readme-docstring/)
++   [`readme-generator` - `README.md` generator](https://pypi.org/project/readme-generator/)
++   [`setupcfg-generator` - `setup.cfg` generator](https://pypi.org/project/setupcfg-generator/)
++   [`travis-generator` - `.travis.yml` generator](https://pypi.org/project/travis-generator/)

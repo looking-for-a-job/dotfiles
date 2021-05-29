@@ -1,0 +1,1 @@
+exec command and log stdout and stderr

@@ -1,0 +1,1 @@
++   register npmjs.com package

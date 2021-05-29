@@ -1,0 +1,7 @@
+name, version
+
+setup_prod.py чтоли сделать?
+
+version
+1) init/recreate - pypi/current date
+2) bump - recreate setup.py with today

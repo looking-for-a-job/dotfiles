@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+name="${PWD#**/}"
+path="$(temp-copy .)" || exit
+(
+    cd "$path" || exit
+    cat <<EOF > MANIFEST.in
+include requirements.txt
+exclude MANIFEST.in
+EOF
+    rm -fr .git .admin .github .npmignore .python .pypi .readme build dist $'Icon\r' package.json README.md tests UNLICENSE
+    find . -name __pycache__ -exec rm -fr {} \; 2> /dev/null;:
+) || exit
+echo "$path"

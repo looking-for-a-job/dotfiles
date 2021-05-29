@@ -1,0 +1,16 @@
+from django.db import models
+
+from ._base_postges import PostgresCommand
+
+
+class Command(PostgresCommand):
+    def handle(self, *args, **options):
+        sql = """
+SELECT schemaname, matviewname FROM pg_matviews
+"""
+        self.cursor.execute(sql)
+        for r in self.cursor.fetchall():
+            schemaname, matviewname = r
+            sql = """DROP MATERIALIZED VIEW IF EXISTS "%s"."%s" CASCADE;""" % (schemaname, matviewname)
+            print(sql.strip())
+            self.cursor.execute(sql)

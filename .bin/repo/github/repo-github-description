@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+[[ "$PWD" == */gists/* ]] && path="description.txt" || path=".github/description.txt"
+
+! [ -e "$path" ] && echo "SKIP ($PWD): $path NOT EXISTS" && exit
+! [ -e "$path" ] && echo "SKIP ($PWD): $path EMPTY" && exit
+
+description="$(cat "$path")" || exit
+[[ "$PWD" == */gists/* ]] && {
+    url="https://github.com/$fullname"
+    id="$(gist-id "$PWD")" || exit
+    [[ -z "$id" ]] && echo "SKIP ($PWD): gist id unknown" 1>&2 && exit 1
+} || {
+    fullname="$(repo-github-fullname)" || exit
+    url="https://github.com/$fullname"
+}
+
+( set -x; curl -f -I -s -o /dev/null "$url" ) || { echo "SKIP: $url NOT EXISTS"; exit; }
+
+[[ "${PWD%/*}" == ~/git/gists ]] && {
+    ( set -x; gist-description "$id" "$description" ) || exit
+} || { ( set -x; github-description "$fullname" "$description" ) || exit; }

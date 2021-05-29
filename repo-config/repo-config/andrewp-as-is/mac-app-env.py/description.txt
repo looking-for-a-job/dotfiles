@@ -1,0 +1,1 @@
+:apple: set macOS app environment variables (Info.plist LSEnvironment)

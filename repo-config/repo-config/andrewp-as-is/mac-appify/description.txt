@@ -1,0 +1,1 @@
+:apple: create mac app from a shell script

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+export PATH="/usr/libexec:${PATH}"
+
+# macOS
+export PATH="/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support:${PATH}"
+export PATH="/opt/homebrew/bin:${PATH}"
+
+# go
+export GOPATH="${HOME}/.go"
+
+# node
+export PATH="${HOME}/.node/bin:${PATH}"
+
+# rust
+export PATH="${HOME}/.cargo/bin:${PATH}"
+
+# dotfiles bin
+export PATH="${HOME}/.local/share/bin:${PATH}"
+export PATH="${HOME}/.bin:${PATH}"
+

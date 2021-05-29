@@ -1,0 +1,1 @@
+django models for import, edit, export Google Chrome bookmarks

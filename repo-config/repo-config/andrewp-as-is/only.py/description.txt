@@ -1,0 +1,1 @@
+@only.<OS> decorator. raise OSError if not supported OS

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+( set -x; . "${BASH_SOURCE[0]%/*}"/files/edit/fix.sh ) || exit
+( set -x; . "${BASH_SOURCE[0]%/*}"/files/rm.sh ) || exit
+( set -x; . "${BASH_SOURCE[0]%/*}"/files/run.sh ) || exit
+
+old="$(set -x;github-fullname)" || exit
+[ -e tests ] && { ( set -x; scrutinizer-browse ) || exit; }
+
+( set -x; . "${BASH_SOURCE[0]%/*}"/web/github.com/remote/rm.sh ) || exit
+( set -x; . "${BASH_SOURCE[0]%/*}"/web/github.com/remote/add.sh ) || exit
+new="$(set -x; github-fullname)" || exit
+( set -x; github-rename "$old" "$new" ) || exit
+# git commit+push
+( set -x; . "${BASH_SOURCE[0]%/*}"/web/github.com/run.sh ) || exit
+
+[ -e .travis.yml ] && { ( set -x; travis sync ) || exit; };:

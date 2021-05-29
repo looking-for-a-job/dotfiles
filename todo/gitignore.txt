@@ -1,0 +1,7 @@
+find . -type l | sed -e s'/^\.\///g' >> .gitignore
+
+в hook
+
+а в dotfiles можно nginx/site-enabled/*.conf заблокировать
+
+да но в глобальном .gitignore хотя он там будет локальный )

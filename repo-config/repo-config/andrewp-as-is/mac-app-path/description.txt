@@ -1,0 +1,1 @@
+:apple: :open_file_folder: find macOS app path

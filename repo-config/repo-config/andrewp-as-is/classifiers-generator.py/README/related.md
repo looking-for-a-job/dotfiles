@@ -1,0 +1,7 @@
++   [`classifiers-generator` - python classifiers generator](https://pypi.org/project/classifiers-generator/)
++   [`commands-generator` - shell commands generator](https://pypi.org/project/commands-generator/)
++   [`launchd-generator` - launchd.plist generator](https://pypi.org/project/launchd-generator/)
++   [`readme-generator` - `README.md` generator](https://pypi.org/project/readme-generator/)
++   [`requirements-generator` - `requirements.txt` generator](https://pypi.org/project/requirements-generator/)
++   [`setupcfg-generator` - `setup.cfg` generator](https://pypi.org/project/setupcfg-generator/)
++   [`travis-generator` - `.travis.yml` generator](https://pypi.org/project/travis-generator/)

@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+! [ -e setup.py ] && exit
+
+APP_LABEL="$(echo "$PWD" | xargs basename | sed -e "s/.py//" -e "s/-/_/g")"
+export APP_LABEL="$APP_LABEL"
+
+[ -e migrations_settings.py ] || [[ -n "$(find . -type d -name management)" ]] && cat <<"EOF" | envsubst;:
+#### `settings.py`
+```python
+INSTALLED_APPS+=['${APP_LABEL}']
+```
+
+EOF

@@ -1,0 +1,1 @@
+:octocat: delete gist(s) by ID

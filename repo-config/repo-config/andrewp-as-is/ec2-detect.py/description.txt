@@ -1,0 +1,1 @@
+:cloud: check if an instance is running on AWS

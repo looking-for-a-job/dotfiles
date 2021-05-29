@@ -1,0 +1,1 @@
+:snake: :new: update pip requirements file with latest versions

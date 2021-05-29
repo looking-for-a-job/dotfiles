@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+README_INSTALL_NAME="$(echo "$PWD" | xargs basename | cut -d. -f1)"
+export README_INSTALL_NAME="$README_INSTALL_NAME"
+
+[ -e setup.py ] || [ -e package.json ] && echo && echo "### Installation"
+
+[ -e setup.py ] && cat <<"EOF" | envsubst;:
+```bash
+$ pip install ${README_INSTALL_NAME}
+```
+EOF
+
+[ -e package.json ] && cat <<"EOF" | envsubst;:
+```bash
+$ npm install -g ${README_INSTALL_NAME}
+```
+EOF
+[ -e setup.py ] || [ -e package.json ] && echo "";:

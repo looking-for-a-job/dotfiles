@@ -1,0 +1,1 @@
+:snake: :chart_with_upwards_trend: $XDG_CACHE_HOME read/write files

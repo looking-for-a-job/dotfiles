@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+echo todo
+exit
+
+[[ "${PWD%/*}" == ~/git/gists ]] && echo "SKIP ($PWD)" && exit
+
+set --
+cache="$(repo-cache)"  || exit
+dst="$cache"/github.com/topics.txt
+! [ -e "${dst%/*}" ] && { ( set -x; mkdir -p "${dst%/*}" ) || exit; }
+
+path=.config/github.com/topics.txt
+! [ -e "$path" ] && echo "SKIP ($PWD): $path NOT EXISTS" && exit
+
+[ -s "$path" ] && {
+    custom="$(cat "$path")" || exit
+    [[ -n "$custom" ]] && set -- "$@" $custom
+}
+
+[[ $PWD == *deprecated* ]] && set "$@" "archived" "deprecated"
+[[ "${PWD##*/}" == *chrome* ]] && set "$@" "chrome"
+[[ "${PWD##*/}" == *env* ]] && set "$@" "env"
+[[ "${PWD##*/}" == *exec* ]] && set "$@" "exec"
+[[ "${PWD##*/}" == django-* ]] && set "$@" "django"
+[[ "${PWD##*/}" == wagtail-* ]] && set "$@" "wagtail"
+[[ "${PWD##*/}" == *factory* ]] && set "$@" "factory"
+[[ "${PWD##*/}" == *factory* ]] && set "$@" "generator"
+[[ "${PWD##*/}" == *generator* ]] && set "$@" "generator"
+[[ "${PWD##*/}" == *finder* ]] && set "$@" "finder"
+[[ "${PWD##*/}" == *markdown* ]] && set "$@" "markdown"
+[[ "${PWD##*/}" == *validator* ]] && set "$@" "validator"
+[[ "${PWD##*/}" == *ubersicht* ]] && set "$@" "ubersicht-widget"
+[[ $PWD == *dotfiles* ]] && set "$@" "config" "dotfiles"
+[[ $PWD == *example* ]] && set "$@" "examples"
+[[ "${PWD##*/}" == *github* ]] && set "$@" "github"
+[[ $PWD == *.py ]] && set "$@" "python"
+
+[ -e setup.py ] && {
+    py="$(find . -type f -name "*.py")" || exit
+    py_cli="$([ -e setup.py ] && while IFS= read f; do
+        grep -q '__name__' "$f" && grep -q '__main__' "$f" && echo "$f"
+    done <<< "$py")"
+    [[ -n "$py_cli" ]] && [[ $PWD == *.py ]] && set "$@" "cli"
+    [ -e scripts ] && [[ -n "$(find scripts -name "*.applescript")" ]] && set "$@" "applescript"
+}
+
+[[ "${PWD##*/}" == *"-cli" ]] && set "$@" "cli"
+[ -d scripts ] && set "$@" "cli"
+
+[ -e setup.cfg ] && grep -q "applescript" setup.cfg && set "$@" "applescript"
+[ -e setup.cfg ] && grep -q "osascript" setup.cfg && set "$@" "applescript"
+
+[[ "$@" == *"launchd"* ]] && set "$@" "macos"
+path="classifiers.txt"
+[ -e "$path" ] && grep -q MacOS "$path" && set "$@" "macos"
+[[ "${PWD##*/}" == "mac-"* ]] && set "$@" "macos"
+
+[[ "${PWD##*/}" == "sublime"* ]] && set "$@" "sublime-text"
+
+[[ $# != 0 ]] && {
+    IFS=$'\n'; echo $@ | tr ' ' "\n" | sort -u -o "$dst";
+} || { [ -e "$dst" ] && { rm "$dst" || exit; } }
+[ -e "$dst" ] && { ( set -x; cat "$dst" ) || exit; };:

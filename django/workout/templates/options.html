@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<div id="options_button">
+    <a href="#" class="btn btn-secondary" title="{% trans "Options" %}">
+        <i class="fas fa-cogs"></i>
+    </a>
+</div>
+<div id="options_panel" class="btn-group-vertical" style="visibility: hidden">
+    <input id="options_reps" type="checkbox" {% if options.reps %}checked{% endif %} data-toggle="toggle" data-on="Reps" data-off="Reps" data-onstyle="success" data-offstyle="danger" data-width="100%">
+    <input id="options_kg" type="checkbox" {% if options.kg %}checked{% endif %} data-toggle="toggle" data-on="Kg" data-off="Kg" data-onstyle="success" data-offstyle="danger" data-width="100%">
+    <input id="options_km" type="checkbox" {% if options.km %}checked{% endif %} data-toggle="toggle" data-on="Km" data-off="Km" data-onstyle="success" data-offstyle="danger" data-width="100%">
+</div>

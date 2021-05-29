@@ -1,0 +1,1 @@
+:pencil: run .command file in Terminal.app (macOS)

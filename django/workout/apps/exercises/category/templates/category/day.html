@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load l10n %}
+
+{% if summary %}
+    {% if summary.link %}
+    <a href="{% url 'exercise:index' id=summary.exercise.pk date=summary.date %}" {% if summary.todo %}class="todo"{% endif %}>
+    {% endif %}
+    {% if summary.weight %}
+      <i class="fas fa-weight-hanging"></i>
+      {% localize on %}{{ summary.weight }}{% endlocalize %}
+    {% else %}
+        {% if summary.reps %}&nbsp;Σ&nbsp;{{ summary.reps }}{% endif %}
+        {% if not summary.reps and summary.link %}№{{ summary.count }}{% endif %}
+    {% endif %}
+    {% if exercises %}</a>{% endif %}
+{% else %}
+    <a href="{% url 'exercise:index' id=summary.exercise.pk date=summary.date|date:'Y-m-d' %}" class="edit" style="visibility: hidden">{% trans "edit" %}</a>
+{% endif %}

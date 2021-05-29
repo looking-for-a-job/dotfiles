@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+[[ $PWD == */dotfiles ]] && exit
+( set -x; repo-node-package-create )

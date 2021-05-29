@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+{% if category %}
+<h1 class="category category_{{ category.pk }}">
+    <a href="{% url 'category:edit' id=category.pk %}">{{ category.name }}</a>
+</h1>
+{% endif %}
+<table class="days">
+    {% include "category/table/thead.html" %}
+    {% include "category/table/tbody.html" %}
+</table>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+! [ -e setup.py ] && exit
+
+[[ -n "$(find . -type d -name migrations)" ]] && cat <<"EOF";:
+#### `migrate`
+```bash
+$ python manage.py migrate
+```
+
+EOF
+

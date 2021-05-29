@@ -1,0 +1,1 @@
+:apple: :information_source: macOS frontmost app info

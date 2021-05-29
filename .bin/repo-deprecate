@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+# https://getemoji.com/
+
+path=".config/github.com/topics.txt"
+( set -x; repo:files:init ) || exit
+( set -x; repo:files:python:recreate ) || exit
+grep -q "deprecated" "$path" || {
+    echo "deprecated" >> "$path"
+}
+
+path=".config/README/deprecated.md"
+! [ -s "$path" ] && {
+    echo "**This repo has been deprecated**" > "$path"
+}
+
+path="classifiers.txt"
+grep -q "Development Status :: 7 - Inactive" "$path" || {
+    echo "Development Status :: 7 - Inactive" >> "$path"
+}
+
+( set -x; repo:files:README:recreate ) || exit
+( set -x; repo:files:python:classifiers.txt:recreate ) || exit
+( set -x; touch .config/deprecated.txt )

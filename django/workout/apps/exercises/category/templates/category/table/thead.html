@@ -1,0 +1,19 @@
+{% load i18n %}
+
+<thead>
+<tr>
+    <th></th>
+    <th class="favorite {% if not favorite %}hidden{% endif %}">
+        <a href="{% url 'favorite' %}" class="btn-warning" {% if not favorite %}style="visibility: hidden"{% endif %}><i class="far fa-star"></i></i></a>
+    </th>
+    {% for day in days %}
+    <th class="day{% if day == date %} selected{% endif %}">
+        {% if day == day.today %}{% trans "Today" %} <i class="fas fa-calendar-check"></i>{% endif %}<br />
+        <a href="{% url 'category:index' date=day|date:'Y-m-d' %}">
+            <span class="date">{{ day|date:"d F" }}</span><br />
+            <span class="weekday">{{ day|date:"l" }}</span>
+        </a>
+    </th>
+    {% endfor %}
+</tr>
+</thead>

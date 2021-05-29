@@ -1,0 +1,23 @@
+{% load i18n %}
+
+{% if data.sets %}
+<table class="sets">
+    <tbody>
+{% for set in data.sets %}
+<tr>
+    <td class="num {% if not set.completed_at %}todo{% endif %}">
+        <a href="{% url 'set:edit' id=set.pk %}">№{{forloop.counter}}</a>
+    </td>
+    <td class="reps {% if not set.completed_at %}todo{% endif %}">
+        <a href="{% url 'set:edit' id=set.pk %}">
+        {% if set.kg != 0 and set.reps != 0 %}{{ set.kg }}x{{ set.reps }}{% else %}{% if set.reps %}<b>{{ set.reps }}</b>{% endif %}{% endif %}
+        {% if set.description %} {{ set.description }}{% endif %}
+        </a>
+    </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+

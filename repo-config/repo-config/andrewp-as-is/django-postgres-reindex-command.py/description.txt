@@ -1,0 +1,1 @@
+reindex postgres indexes using django command

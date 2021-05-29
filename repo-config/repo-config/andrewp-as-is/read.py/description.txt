@@ -1,0 +1,1 @@
+:open_file_folder: read(path,size=-1,encoding=None) function - read file, open.read replacement

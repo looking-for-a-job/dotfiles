@@ -1,0 +1,1 @@
+:apple: :snake: osascript (AppleScript) python implementation

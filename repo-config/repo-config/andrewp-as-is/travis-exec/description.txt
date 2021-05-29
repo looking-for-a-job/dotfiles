@@ -1,0 +1,1 @@
+:white_check_mark: :zap: execute command for every travis repo

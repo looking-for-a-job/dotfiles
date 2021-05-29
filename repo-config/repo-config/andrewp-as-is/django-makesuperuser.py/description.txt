@@ -1,0 +1,1 @@
+:key: manage.py makesuperuser --username admin --password admin

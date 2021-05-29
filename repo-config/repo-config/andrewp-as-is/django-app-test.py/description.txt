@@ -1,0 +1,1 @@
+test django app with minimum files without project

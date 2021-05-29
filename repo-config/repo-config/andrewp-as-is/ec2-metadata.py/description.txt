@@ -1,0 +1,1 @@
+:cloud: :mag: ec2 instance metadata

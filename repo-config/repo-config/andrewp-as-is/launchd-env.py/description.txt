@@ -1,0 +1,1 @@
+:rocket: manage launchd.plist environment variables

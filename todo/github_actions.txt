@@ -1,0 +1,12 @@
+https://github.com/andrewp-as-is/public.py/new/master?filename=.github%2Fworkflows%2Fpython-package.yml&workflow_template=python-package
+
+https://help.github.com/en/actions/configuring-and-managing-workflows/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository
+
+publish
+https://help.github.com/en/actions/creating-actions/publishing-actions-in-github-marketplace
+
+actions:
+https://github.com/tdeboissiere/python-format-action
+
+
+https://developer.github.com/v3/actions/

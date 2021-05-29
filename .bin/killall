@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+all=false
+[[ $# == 0 ]] && {
+    all=true
+    ps -ax | grep python | awk '{print $1}' | xargs kill -PIPE
+    ps -ax | grep sh | awk '{print $1}' | xargs kill -PIPE
+    ps -ax | grep bash | awk '{print $1}' | grep -v $$ | xargs kill -PIPE
+}
+while [[ $# != 0 ]]; do
+    name="$1"
+    shift
+    [[ $name == "bash" ]] && bash=true && continue
+    [[ $name == "python" ]] && {
+        ps="$(ps -ax | grep -v grep | grep python)"
+        [[ -n "$ps" ]] && while IFS= read l; do
+            pid="$(IFS=' ';set $l;echo $1)"
+            [[ -n "$pid" ]] && kill -13 "$pid"
+        done <<< "$ps";:
+    }
+    /usr/bin/killall "$name" 2> /dev/null
+done;:
+[[ $bash == true ]] && { ( set -x; find ~/Library/Logs -type f -name "*.log" -mindepth 1 -exec rm {} + ) }
+[[ $bash == true ]] && /usr/bin/killall "bash" &> /dev/null;:

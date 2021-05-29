@@ -1,0 +1,1 @@
+:rocket: execute script via launchd and log stdout, stderr

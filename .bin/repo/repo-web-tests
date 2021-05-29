@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+
+! [ -e tests ] && echo "SKIP ($PWD): ! [ -e tests ]" && exit
+
+# travis
+fullname="$(bash -l ~/.repo-scripts/web/github.com/fullname.sh)" || exit
+( set -x; travis sync ) || exit
+( set -x; travis enable -r "$fullname" ) || {
+    ( set -x; travis enable -r "$fullname" ) || exit
+}
+( set -x; travis open -r "$fullname" ) || exit
+
+WEBHOOK_URL="$TRAVIS_WEBHOOK_URL"
+[[ -z "$WEBHOOK_URL" ]] && echo "ERROR: WEBHOOK_URL unknown" && exit 1
+( set -x; python3 -m travis_env.set "$fullname" "WEBHOOK_URL" "$WEBHOOK_URL" ) || exit
+
+( set -x; python3 -m travis_cron.add "$fullname" master weekly no ) || exit

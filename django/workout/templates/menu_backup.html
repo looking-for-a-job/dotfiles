@@ -1,0 +1,53 @@
+{% load i18n %}
+
+<div id="menu">
+<a href="{% url 'category:index' date=date|date:'Y-m-d' %}" class="btn btn-info" title="{% trans "Home" %}"><i class="fas fa-home"></i></a>
+<a href="{% if category %}{% url 'category:add' id=category.pk %}{% else %}{% url 'category:add' %}{% endif %}" class="btn btn-info" title="{% trans "Add category" %}">
+    <i class="fas fa-folder-plus"></i>
+</a>
+<a href="{% if category %}{% url 'exercise:add' id=category.pk %}{% else %}{% url 'exercise:add' %}{% endif %}" class="btn btn-info" title="{% trans "Add exercise" %}">
+    <i class="fas fa-plus"></i>
+</a>
+{% if "add" not in request.path and "edit" not in request.path %}
+<a href="/mode/" class="btn btn-info" title="{% trans "todo" %}">
+    {% if todo %}<i class="fas fa-calendar-plus"></i>{% else %}<i class="far fa-save"></i>{% endif %}
+</a>
+{% endif %}
+<a href="/mode/" class="btn btn-info" title="{% trans "todo" %}">
+    {% if todo %}<i class="fas fa-calendar-plus"></i>{% else %}<i class="far fa-save"></i>{% endif %}
+</a>
+<a href="/profile/" class="btn btn-info" title="{% trans "Profile" %}">
+    <i class="fas fa-user-cog"></i>
+</a>
+</div>
+
+logout <i class="fas fa-power-off"></i>
+
+<ul>
+    <li>
+        <i class="fas fa-user-cog"></i> {% trans "Profile" %}
+    </li>
+    <li>
+        <i class="far fa-flag"></i> {% trans "Exercises" %}
+    <li>
+        <i class="fas fa-edit"></i> {% trans "Articles" %}
+    </li>
+    <li>
+        <i class="far fa-sticky-note"></i> {% trans "Notes" %}
+    </li>
+    <li>
+        <i class="fas fa-chart-bar"></i>{% trans "Замеры" %}
+    </li>
+    <li>
+        <i class="far fa-newspaper"></i> {% trans "News" %}
+    </li>
+    <li>
+        <i class="fas fa-users"></i> {% trans "Users" %}
+    </li>
+    </li>
+        <i class="fas fa-blog"></i> {% trans "Blogs" %}
+    </li>
+    <li>
+        <i class="fas fa-info-circle"></i> {% trans "Contacts" %}
+    </li>
+</ul>

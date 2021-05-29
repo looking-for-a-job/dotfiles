@@ -1,0 +1,84 @@
+# python3 -m pip install -r ~/git/dotfiles/python-requirements.txt
+
+aiofiles
+aiohttp
+apscheduler
+arrow
+awscli
+
+click
+ConfigParser
+cssselect
+
+decorator
+django
+dj-database-url
+django-allauth
+django-bakery
+django-cachalot
+django-cache-machine
+django-cacheops
+django-celery
+django-celery-beat
+django-comments-xtd
+django-configurations
+django-cors-headers
+django-dirtyfields
+django-emoji
+django-extensions
+django-forms-bootstrap
+django-freeze
+django-htmlmin
+django-medusa
+django-querycount
+django-settings-export
+django-summernote
+django-tinymce
+django-webpack-loader
+django-webpack5-loader
+
+# eventlet
+# gevent
+# greenlet
+
+flask
+
+jinja2
+
+humanfriendly
+
+lxml
+MarkdownPP
+nose
+
+pendulum
+pika
+pillow
+pipreqs
+psutil
+pyquery
+python-memcached
+# psycopg2 # ConfigParser required
+# psycopg2-binary
+# psycopg2cffi
+pycodestyle
+PyGithub
+pytest
+PyYAML
+
+redis
+rstvalidator
+ruamel.yaml
+
+schedule
+shyaml
+sqlalchemy
+
+twine
+wheel
+
+youtube-dl
+
+urlextract
+
+validators

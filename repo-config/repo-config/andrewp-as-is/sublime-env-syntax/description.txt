@@ -1,0 +1,1 @@
+:pencil: .env files syntax highlighting

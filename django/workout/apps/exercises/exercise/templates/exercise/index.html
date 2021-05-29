@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<h1 class="exercise exercise_{{ exercise.pk }}">
+    <a href="{% url 'exercise:edit' id=exercise.pk %}">{{ exercise.name|truncatechars:50 }}</a>
+</h1>
+{% if exercise.description %}
+<div class="description">
+    {{ exercise.description }}
+</div>
+{% endif %}
+{% if exercise.url %}
+<div class="url">
+    <a href="{{ exercise.url }}" target="_blank">
+    {{ exercise.url|truncatechars:200 }}
+    </a>
+</div>
+{% endif %}
+<table class="days">
+    {% include "exercise/table/thead.html" %}
+    {% include "exercise/table/tbody.html" %}
+</table>
+{% if date >= date.today %}
+{% include "set/form.html" %}
+{% endif %}
+exercise.gif_url == {{ exercise.gif_url }}
+{% if exercise.gif_url %}
+    <img src="{{ exercise.gif_url }}" />
+{% endif %}
+{% endblock %}

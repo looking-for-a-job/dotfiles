@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+( set -x; repo-init ) || exit
+( set -x; repo-python-create ) || exit
+( set -x; repo-node-create ) || exit
+( set -x; repo-readme )

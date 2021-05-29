@@ -1,0 +1,74 @@
+th, td {
+    border: 1px solid gray;
+    color: gray;
+    text-align: center;
+    vertical-align: top;
+}
+th.favorite {
+    vertical-align:middle;
+}
+table.day {
+    margin-left:auto;
+    margin-right:auto;
+    text-align:center;
+}
+
+table.day th {
+    font-weight: bold;
+}
+
+
+td.day {
+    height: 100%;
+    text-align:center;
+}
+
+table.days th.name, td.name{
+    vertical-align: middle;
+    text-align: left;
+    padding-left: 20px;
+    width: 1px;
+    white-space: nowrap;
+}
+
+
+
+span.date {
+    font-weight: normal;
+    font-size:14px;
+}
+span.weekday_name {
+    font-weight: bold;
+    font-size:16px;
+}
+
+
+table.days {
+    width: 100%;
+}
+table.days th {
+    margin: 1px;
+    padding: 2px;
+    text-align: center;
+}
+table.days th.today span.weekday {
+    font-size:x-large;
+}
+
+.day a {
+    color: gray;
+}
+
+.selected, .selected * {
+    border-color: green;
+    color: green;
+}
+table td.num a {
+    color: black;
+}
+table td.todo *, .todo {
+    color: orange !important;
+}
+
+
+

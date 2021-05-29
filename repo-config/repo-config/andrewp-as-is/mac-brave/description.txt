@@ -1,0 +1,1 @@
+:apple: :link: macOS Brave Browser.app scripts

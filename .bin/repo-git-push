@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+# todo: -nt ?
+
+( set -x; repo-git-remote ) || exit
+
+! [ -e .git/config ] && echo "$PWD/.git/config NOT EXISTS" && exit
+# remote="$(git remote -v | grep "github.com" | awk '{print $1}' | uniq)"
+remote="$(git remote -v | awk '{print $1}' | uniq)"
+[[ -z "$remote" ]] && echo "SKIP ($PWD): remote EMPTY" && exit
+
+path=.git/refs/remotes/"$remote"
+[ "$path" -nt . ] && echo "SKIP ($PWD): [ $path -nt . ]" && exit
+
+( set -x; git push "$@" --all "$remote" 2>&1 ) || exit
+( set -x; touch .git/refs/remotes/"$remote" )
