@@ -25,10 +25,9 @@ ln:
 	find /usr/local/etc/nginx/sites-available -type f -exec ln -fs '{}' /usr/local/etc/nginx/sites-enabled/ \;
 
 brew:
-	brew services restart nginx
+	brew services restart nginx # brew services stop nginx
 	brew services list | grep nginx
 	ps -ax | grep nginx
-	# brew services stop nginx
 	# /Library/LaunchDaemons/homebrew.mxcl.nginx.plist
 	# ~/Library/LaunchAgents/homebrew.mxcl.nginx.plist
 

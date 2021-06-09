@@ -1,4 +1,0 @@
-django-crispy-forms
-django-registration-redux
-django-tinymce
-created_by

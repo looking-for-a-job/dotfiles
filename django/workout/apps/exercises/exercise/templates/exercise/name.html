@@ -1,5 +1,0 @@
-<a href="{% url 'exercise:index' id=exercise.pk date=date|date:'Y-m-d' %}" class="exercise exercise_{{ exercise.pk }}">{{ exercise.name }}</a>
-{% if exercise.url %}
-    <a href="{{ exercise.url }}" target="_blank" class="exercise exercise_{{ exercise.pk }}">
-    </a>
-{% endif %}

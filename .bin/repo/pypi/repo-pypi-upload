@@ -10,6 +10,6 @@ url="https://pypi.org/project/$name/$version"
 
 # todo: github actions check
 # ( set -x;repo:web:travis-ci.org:check ) || exit
-sdist="$( set -x; repo-python-setup-sdist )" || exit
+sdist="$( set -x; repo-python-setup-twine-sdist )" || exit
 set -- -r "pypi" --config-file=~/.pypirc "$sdist"
 ( set -x; python3 -m twine upload "$@" )

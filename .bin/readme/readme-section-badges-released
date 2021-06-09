@@ -3,11 +3,12 @@
 
 ! [ -e setup.py ] && exit
 
-README_INSTALL_NAME="$(echo "$PWD" | xargs basename | cut -d. -f1)"
-README_RELEASED="$(python3 setup.py --version)" || exit
-export README_INSTALL_NAME="$README_INSTALL_NAME"
-export README_RELEASED="$README_RELEASED"
+INSTALL_NAME="$(echo "$PWD" | xargs basename | cut -d. -f1)"
+RELEASED="$(python3 setup.py --version)" || exit
+[[ -z "$RELEASED" ]] && echo "ERROR: RELEASED empty" && exit 1
+export INSTALL_NAME="$INSTALL_NAME"
+export RELEASED="$RELEASED"
 
 cat <<"EOF" | envsubst;:
-[![](https://img.shields.io/badge/released-${README_RELEASED}-green.svg?longCache=True)](https://pypi.org/project/${README_INSTALL_NAME}/)
+[![](https://img.shields.io/badge/released-${RELEASED}-green.svg?longCache=True)](https://pypi.org/project/${INSTALL_NAME}/)
 EOF

@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-{ set +x; } 2>/dev/null
-
-usage="usage: ${BASH_SOURCE[0]} basename"
-[[ $# != 1 ]] && echo "$usage" && exit 1
-
-path="$(shell-cache "$1")" || exit
-[ -e "$path" ] && echo "$path";:

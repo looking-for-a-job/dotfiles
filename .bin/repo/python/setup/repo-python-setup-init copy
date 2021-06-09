@@ -1,0 +1,107 @@
+#!/usr/bin/env python
+import os
+import setuptools
+
+os.chdir('/Volumes/1TB-SEAGATE-SLIM/git/setupcfg-generator.py')
+
+"""
+https://setuptools.readthedocs.io/en/latest/userguide/declarative_config.html
+"""
+
+METADATA_KEYS = [
+    "name",
+    "version",
+    "url",
+    "download_url",
+    "project_urls",
+    "author",
+    "author_email",
+    "maintainer",
+    "maintainer_email",
+    "classifiers",
+    "license",
+    "description",
+    "long_description",
+    "long_description_content_type",
+    "keywords",
+    "platforms",
+    "provides",
+    "requires",
+    "obsoletes",
+]
+OPTIONS_KEYS = [
+    "zip_safe",
+    "setup_requires",
+    "install_requires",
+    "extras_require",
+    "python_requires",
+    "entry_points",
+    "use_2to3",
+    "use_2to3_fixers",
+    "use_2to3_exclude_fixers",
+    "convert_2to3_doctests",
+    "scripts",
+    "eager_resources",
+    "dependency_links",
+    "tests_require",
+    "include_package_data",
+    "packages",
+    "package_dir",
+    "package_data",
+    "exclude_package_data",
+    "namespace_packages",
+    "py_modules",
+]
+
+def getenv(key,default=None):
+    return os.getenv('SETUPPY_%s' % key,default)
+
+def get_name():
+    return os.path.basename(os.getcwd()).split('.')[0]
+
+def get_packages(self):
+    return getenv('packages',setuptools.find_packages())
+
+def get_scripts(path):
+    pass
+
+class SetupPy:
+    kwargs = None
+
+    def __init__(self,**kwargs):
+        if kwargs:
+            self.kwargs = kwargs
+
+    def get_name(self):
+        return getenv('name',get_name())
+
+    def get_packages(self):
+        return getenv('packages',setuptools.find_packages())
+
+    def get_scripts(self):
+        return getenv('scripts',get_scripts())
+
+    def get_body(self):
+        lines = []
+        # todo: order
+        for key,value in self.get_kwargs():
+            if value not in [None, '', []]:
+                out = "%s=%s," % (key, value)
+                for l in out.splitlines():
+                    lines.append(out)
+        return """setup(
+%s
+)
+""" % "\n".join(lines)
+
+    def __str__(self):
+        return """from setuptools import setup
+
+        """
+        return "\n\n".join(filter(None,
+                                  [self.get_header(), self.get_body(),
+                                   self.get_bottom()]
+                                  )).strip()
+
+
+print(SetupPy())

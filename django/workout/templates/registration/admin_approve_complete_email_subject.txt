@@ -1,2 +1,0 @@
-admin_approve_complete_email_subject.txt todo
-site == {{ site }}

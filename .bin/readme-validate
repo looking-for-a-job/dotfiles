@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-{ set +x; } 2>/dev/null
-
-! [ -e README.md ] && echo "SKIP: README.md NOT EXISTS" && exit
-bad_links="$(find -L . -name "README.md" | xargs python3 -m markdown_link_extractor | grep -v ^"{" | xargs links-validator)"
-[[ -z "$bad_links" ]] && exit
-echo "ERROR:
-$bad_links" && exit 1

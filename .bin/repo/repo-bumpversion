@@ -19,20 +19,18 @@ url="https://pypi.org/pypi/"$name"/json"
 
 v="$(python3 setup.py --version)" || exit
 json="$(set -x; curl -fLs "$url")" || {
-    ( set -x; repo-python-setup-create ); exit
+    ( set -x; repo-python-setup-init ); exit
 }
 pv="$(echo "$json" | jq -r '.info.version')" || exit
 
 [[ -z "$v" ]] && echo "ERROR: version unknown" && exit 1
 [[ -z "$pv" ]] && echo "SKIP: https://pypi.org/project/$name/ NOT REGISTERED" && exit
 
-[[ $v != $pv ]] && {
-    echo $v$'\n'$pv | sort -V | tail -1 | grep -q "$v" && echo "SKIP: $v > $pv" && exit
-}
+# [[ $v == $pv ]] && echo "SKIP: $v uptodate" && exit
+# echo $v$'\n'$pv | sort -V | tail -1 | grep -q "$v" && echo "SKIP: $v > $pv" && exit
 
-( set -x; repo-python-requirements ) || exit
-( set -x; repo-python-classifiers ) || exit
-( set -x; repo-python-setup-create ) || exit
+
+( set -x; repo-python-init ) || exit
 
 sdist="$(set -x; repo-python-setup-sdist)" || exit
 diff="$(
@@ -43,6 +41,7 @@ diff="$(
 [[ -z "$diff" ]] && echo "SKIP: uptodate" && exit
 echo "$diff"
 
-( set -x; setup-prod "$name" "$version" > setup.py ) || exit
+( set -x; repo-python-setup-init "$version" ) || exit
 ( set -x; cat setup.py )
+( set -x; cat setup-twine.py )
 # todo: node

@@ -1,4 +1,3 @@
-/.admin
 /classifiers.txt
 /.env
 /.env.*
@@ -6,6 +5,8 @@
 /.pypi
 /.python
 /.readme
+/setup-twine.py
+/.scripts
 /assets/webpack_bundles
 /Brewfile.lock.json
 /static

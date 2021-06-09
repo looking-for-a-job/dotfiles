@@ -1,20 +1,11 @@
 #!/usr/bin/env bash
 { set +x; } 2>/dev/null
 
-[[ "$PWD" != */gists/* ]] && { ( set -x; bash -l ~/.repo-scripts/git/init.sh ) || exit; }
-( set -x; bash -l ~/.repo-scripts/git/commit.sh ) || exit
-
-[[ "$PWD" != */gists/* ]] && {
-     ( set -x; bash -l ~/.repo-scripts/git/remote/add.sh ) || exit
-}
-( set -x; bash -l ~/.repo-scripts/web/github.com/create.sh ) || exit
-( set -x; bash -l ~/.repo-scripts/web/github.com/push.sh ) || exit
-
-( set -x; bash -l ~/.repo-scripts/web/github.com/description/update.sh ) || exit
-[[ "$PWD" != */gists/* ]] && {
-    ( set -x; bash -l ~/.repo-scripts/web/github.com/homepage/update.sh ) || exit
-    ( set -x; bash -l ~/.repo-scripts/web/github.com/topics/create.sh ) || exit
-    ( set -x; bash -l ~/.repo-scripts/web/github.com/topics/update.sh ) || exit
-    ( set -x; bash -l ~/.repo-scripts/web/github.com/webhooks/add.sh ) || exit
-}
-echo
+( set -x; repo-git-init ) || exit
+( set -x; repo-git-add ) || exit
+( set -x; repo-git-commit ) || exit
+( set -x; repo-github-create ) || exit
+( set -x; repo-git-push ) || exit
+( set -x; repo-github-description ) || exit
+( set -x; repo-github-homepage ) || exit
+( set -x; repo-github-browse ) || exit

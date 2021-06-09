@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+description="$(cat .github/description.txt)" || exit
+description="$(echo "$description" | sed -e 's/:[^()]*://g' | xargs)" # noemoji
+user="$(git config user.name)" || exit
+
+{ set -x; export SETUPPY_URL="https://github.com/$user/${PWD##*/}"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUPPY_DESCRIPTION="$description"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUPPY_LONG_DESCRIPTION="file: README.md"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUPPY_LONG_DESCRIPTION_CONTENT_TYPE="text/markdown"; { set +x; } 2>/dev/null; }
+{ set -x; export SETUPPY_KEYWORDS="$keywords"; { set +x; } 2>/dev/null; } # todo: keywords
+{ set -x; export SETUPPY_LICENSE="Unlicense"; { set +x; } 2>/dev/null; }
+
+cat <<EOF > MANIFEST.in
+exclude MANIFEST.in
+exclude README.md
+exclude requirements.txt
+exclude setup-twine.py
+EOF
+( set -x; python3 -m setuppy sdist > setup-twine.py )

@@ -4,5 +4,5 @@
 dist_dir="$(set -x;mktemp -d)" || exit
 
 ( set -x; rm -fr /tmp/python )
-( set -x; python3 setup.py sdist --dist-dir="$dist_dir"  1> /dev/null ) || exit
+( set -x; python3 setup-twine.py sdist --dist-dir="$dist_dir"  1> /dev/null ) || exit
 find "$dist_dir" -type f

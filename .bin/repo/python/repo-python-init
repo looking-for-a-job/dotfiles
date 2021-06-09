@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+[[ $PWD == */dotfiles ]] && exit
+( set -x; repo-python-setup-init ) || exit
+( set -x; repo-python-requirements-init ) || exit
+( set -x; repo-python-classifiers-init ) || exit

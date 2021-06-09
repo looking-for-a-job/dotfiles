@@ -1,4 +1,0 @@
-registration:admin_approve_email.txt todo
-
-user = {{ user }}
-site = {{ site }}

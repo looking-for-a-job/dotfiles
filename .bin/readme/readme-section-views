@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+{ set +x; } 2>/dev/null
+
+! [ -s .readme/views.md ] && exit
+
+cat <<"EOF";:
+#### `views.py`
+EOF
+cat .readme/views.md

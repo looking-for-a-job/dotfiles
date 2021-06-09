@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-{ set +x; } 2>/dev/null
-
-! [ -e setup.py ] && exit
-
-cat <<"EOF" | envsubst;:
-[![](https://img.shields.io/badge/license-Unlicense-blue.svg?longCache=True)](https://unlicense.org/)
-EOF

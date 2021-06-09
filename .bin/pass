@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-{ set +x; } 2>/dev/null
-
-set -- 20 # length
-pass="$(openssl rand -base64 $1 | tr -d '=')" || exit
-echo "$pass" | pbcopy
-echo "$pass"

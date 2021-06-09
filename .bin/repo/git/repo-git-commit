@@ -41,7 +41,4 @@ count="$(git rev-list --all --count)"
 status="$(set -x; git status -s)" || exit
 [[ -n "$status" ]] && echo "$status" && exit 1
 
-( set -x; cat .git/refs/heads/master ) || exit
-
-( set -x; /usr/bin/touch "$heads" ) || exit
 ( set -x; git ls-tree -r master --name-only )
